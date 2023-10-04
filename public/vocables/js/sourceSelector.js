@@ -3,7 +3,6 @@ import { html } from "https://cdn.jsdelivr.net/npm/lit-html@2.8.0/lit-html.min.j
 import { component, useState } from 'https://cdn.skypack.dev/pin/haunted@v5.0.0-FvCc6Fq9BO6lNOEjq7Jg/mode=imports/optimized/haunted.js';
 import "./button.js" ;
 import "./input.js" ;
-// import from "../css/main.css";
 // Create your functional component, and return a lit-html TemplateResult
 function sourceSelector() {
   // create the DOM elements
@@ -11,8 +10,7 @@ function sourceSelector() {
   
   return html`
   <link rel="stylesheet" href="http://localhost:3010/vocables/css/main.css">
-  <slsv-button>Lineage</slsv-button>
-  <slsv-input></slsv-input>
+  <slot></slot>
   `;
 }
 
