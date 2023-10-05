@@ -8,18 +8,18 @@ import  "./indexSeperatedFiles/slsvinput.js";
 
 
 
-function SourceSelector  (){
+function SourceSelector  ({abc}){
 
  
     return html`
     <div>
     <slsv-input></slsv-input>
-    <slsv-button><slsv-button>
+    <slsv-button value=${abc}><slsv-button>
     </div>
     `;
   
 }
-
+SourceSelector.observedAttributes = ['abc'];
 customElements.define("slsv-ss", component(SourceSelector));
 
 

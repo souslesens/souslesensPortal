@@ -3,13 +3,21 @@ import { component } from 'https://cdn.skypack.dev/pin/haunted@v5.0.0-FvCc6Fq9BO
 // A powerful feature of lit-html is that templates are just variables.
 // You can create them anywhere, and you can define generic templates
 // to be used by multiple components.
-function SlsvButton(){
+function SlsvButton({value}){
     return html`
+    <style>
+    #btn {
+      margin: 6px;
+      padding: 6px;
+      text-align: center;
+      cursor: pointer;
+    }
+    </style>
     <link rel="stylesheet" href="http://localhost:3010/vocables/css/main.css">
-    <input type="button" value="Lineage" class="slsv-button">
+    <input id="btn" type="button"  class="slsv-button" value=${value}>
     </input>
     `;
   
 }
-
+SlsvButton.observedAttributes = ['value'];
 customElements.define("slsv-button", component(SlsvButton));
