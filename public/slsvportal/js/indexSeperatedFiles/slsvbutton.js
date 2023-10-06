@@ -13,7 +13,7 @@ function SlsvButton({value}){
       cursor: pointer;
     }
     </style>
-    <link rel="stylesheet" href="http://localhost:3010/vocables/css/main.css">
+    <link rel="stylesheet" href="http://localhost:3010/slsvportal/assets/css/main.css">
     <input id="btn" type="button"  class="slsv-button" value=${value}>
     </input>
     `;

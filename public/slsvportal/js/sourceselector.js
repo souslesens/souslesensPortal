@@ -10,10 +10,10 @@ function sourceSelector({abc,cancel}) {
     <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center;">
       <div style="background: #fff; padding: 1rem;">
         <p>Popup Content Here</p>
-        <button @click=${() => setOpen(false)}>Close</button>
+        <slsv-button value="Close Popup" @click=${() => setOpen(false)}></slsv-button>
       </div>
     </div>
-  ` : html`<button @click=${() => setOpen(true)}>Open</button>`;
+  ` : html`<slsv-button value="Open" @click=${() => setOpen(true)}></slsv-button>`;
 };
 customElements.define('my-popup', component(PopUp));
   const handleClick = () => {
@@ -21,12 +21,12 @@ customElements.define('my-popup', component(PopUp));
     
   };
   return html`
-  <link rel="stylesheet" href="http://localhost:3010/vocables/css/main.css">
+  <link rel="stylesheet" href="http://localhost:3010/slsvportal/assets/css/main.css">
   <div id="mainDialogDiv"></div>
   <div id="sourceSelector" style="margin-bottom: 10px; width: auto; min-height: 0px; max-height: none; height: 680px">
     <div class="sourceSelector_buttons">
-        <slsv-button value=${cancel}>Cancel</slsv-button>
-        <slsv-button value=${abc} @click=${() => handleClick()}}>OK</slsv-button>
+        <slsv-button value=${cancel}></slsv-button>
+        <slsv-button value=${abc} @click=${() => handleClick()}}></slsv-button>
         <my-popup></my-popup>
     </div>
     <div>Search : <input id="sourceSelector_searchInput" value="" autocomplete="off" style="width: 200px; font-size: 12px; margin: 3px; padding: 3px" /></div>

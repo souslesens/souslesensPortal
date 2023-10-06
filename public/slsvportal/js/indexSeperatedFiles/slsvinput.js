@@ -7,7 +7,7 @@ import { component,html } from 'https://cdn.skypack.dev/pin/haunted@v5.0.0-FvCc6
 function SlsvInput ({value}){
 
     return html`
-    <link rel="stylesheet" href="http://localhost:3010/vocables/css/main.css">
+    <link rel="stylesheet" href="http://localhost:3010/slsvportal/assets/css/main.css">
     <input class="slsv-input" value=${value}>
     </input>
     `;
