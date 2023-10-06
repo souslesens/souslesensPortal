@@ -26,7 +26,8 @@ customElements.define('my-popup', component(PopUp));
   <div id="sourceSelector" style="margin-bottom: 10px; width: auto; min-height: 0px; max-height: none; height: 680px">
     <div class="sourceSelector_buttons">
         <slsv-button value=${cancel}>Cancel</slsv-button>
-        <slsv-button value=${abc} @click=${() => setOpen(false)}}>OK</slsv-button>
+        <slsv-button value=${abc} @click=${() => handleClick()}}>OK</slsv-button>
+        <my-popup></my-popup>
     </div>
     <div>Search : <input id="sourceSelector_searchInput" value="" autocomplete="off" style="width: 200px; font-size: 12px; margin: 3px; padding: 3px" /></div>
 
@@ -34,7 +35,7 @@ customElements.define('my-popup', component(PopUp));
         <div id="sourceSelector_jstreeDiv"></div>
   
     </div>
-    <my-popup></my-popup>
+    
 </div>
   
   `;
