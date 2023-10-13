@@ -92,7 +92,7 @@ var SourceSelectorWidget = (function() {
       }
       var source = SourceSelectorWidget.getSelectedSource()[0];
       self.mainSource = source;
-      self.setCurrentSource(source);
+      Lineage_sources.setCurrentSource(source);
       $("#sourcesSelectionDialogdiv").dialog("close");
       $("#lineage_allActions").css("visibility", "visible");
       MainController.UI.showHideRightPanel("show");
@@ -102,6 +102,8 @@ var SourceSelectorWidget = (function() {
       var sources = SourceSelectorWidget.getCheckedSources();
       self.loadSources(sources);
   };
+
+  options.selectTreeNodeFn = selectTreeNodeFn;
    SourceSelectorWidget.loadSourcesTreeDiv("sourceSelector_jstreeDiv", options);
     $("#sourceSelector_searchInput").focus();
     //  $("#sourceSelector_SearchSourceInput");
