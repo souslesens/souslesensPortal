@@ -52,7 +52,6 @@ return html`
 <div class="jstreeContainer" style="width: 360px; height: 600px; overflow: auto; margin-top: 5px">
   <div id="sourceSelector_jstreeDiv"></div>
 </div>
-<h1>gg</h1>
 </div>
 `;
 }
