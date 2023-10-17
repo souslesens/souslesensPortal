@@ -2,6 +2,7 @@ import MainController from "../shared/mainController.js";
 import common from "../shared/common.js";
 import {LitElement, html,css} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js';
 import JstreeWidget from "./jstreeWidget.js";
+import "./js/basicComponents.js";
 /**
  * ***********************************************************************
  *  Widget >Description
@@ -44,6 +45,7 @@ render() {
 return html`
 <div id="sourceSelector" style="margin-bottom: 10px; width: auto; min-height: 0px; max-height: none; height: 680px">
 <div class="sourceSelector_buttons">
+<slsv-button value="Cancel"></slsv-button>
   <button class="btn btn-sm my-1 py-0 btn-outline-primary" onclick="$('#sourceSelector').dialog('close')">Cancel</button>
   <button class="btn btn-sm my-1 py-0 btn-outline-primary" id="sourceSelector_validateButton">OK</button>
 </div>
@@ -52,6 +54,7 @@ return html`
 <div class="jstreeContainer" style="width: 360px; height: 600px; overflow: auto; margin-top: 5px">
   <div id="sourceSelector_jstreeDiv"></div>
 </div>
+
 </div>
 `;
 }

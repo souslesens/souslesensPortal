@@ -1,0 +1,11 @@
+.slsv-skin{
+    font-size: x-small;
+    font-family: 'Courier New', Courier, monospace;
+}
+input {
+    font-weight: bold;
+}
+
+button {
+    background-color: yellowgreen;
+}

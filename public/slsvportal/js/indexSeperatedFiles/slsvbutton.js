@@ -20,4 +20,4 @@ function SlsvButton({value}){
   
 }
 SlsvButton.observedAttributes = ['value'];
-customElements.define("slsv-button", component(SlsvButton));
+customElements.define("old-button", component(SlsvButton));

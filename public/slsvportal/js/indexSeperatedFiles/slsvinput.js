@@ -14,4 +14,4 @@ function SlsvInput ({value}){
   
 }
 SlsvInput.observedAttributes = ['value'];
-customElements.define("slsv-input", component(SlsvInput));
+customElements.define("old-input", component(SlsvInput));
