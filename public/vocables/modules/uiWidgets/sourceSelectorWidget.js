@@ -51,6 +51,8 @@ return html`
   <button class="btn btn-sm my-1 py-0 btn-outline-primary" id="sourceSelector_validateButton">OK</button>
 </div>
 <div>Search : <input id="sourceSelector_searchInput" value="" autocomplete="off" style="width: 200px; font-size: 12px; margin: 3px; padding: 3px" /></div>
+<div>Search : <slsv-input id="sourceSelector_searchInput" value="" autocomplete="off"></slsv-input></div>
+
 
 <div class="jstreeContainer" style="width: 360px; height: 600px; overflow: auto; margin-top: 5px">
   <div id="sourceSelector_jstreeDiv"></div>

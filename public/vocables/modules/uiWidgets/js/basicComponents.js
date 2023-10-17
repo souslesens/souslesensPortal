@@ -63,21 +63,24 @@ customElements.define("slsv-button", SlsvButton);
 
 class SlsvInput extends LitElement {
   static properties = {
-    value: { type: String, reflect: true }
+    value: { type: String, reflect: true },
+    inputId: { type: String, reflect: true },
+    inputClass: { type: String, reflect: true },
+    inputAuto: { type: String, reflect: true }
   };
   constructor() {
     super();
     this.value = "";
+    this.inputId= "";
+    this.inputClass= "";
+    this.inputAuto="off";
     this.attachShadow({ mode: 'open' });
 }
 
-createRenderRoot() {
-  return this;
-} 
     render(){
     return html`
     <link rel="stylesheet" href="../../vocables/css/slsv-components.css">
-    <input class="slsv-input" .value="${this.value}">
+    <input class="${this.inputClass}" id="${this.inputId}" .value="${this.value}" autocomplete="${this.inputAuto}">
     </input>
     `;
   
