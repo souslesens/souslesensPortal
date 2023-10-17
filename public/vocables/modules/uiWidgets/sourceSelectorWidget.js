@@ -45,7 +45,8 @@ render() {
 return html`
 <div id="sourceSelector" style="margin-bottom: 10px; width: auto; min-height: 0px; max-height: none; height: 680px">
 <div class="sourceSelector_buttons">
-<slsv-button value="Cancel"></slsv-button>
+<slsv-button btnId="zzzz" value="Cancel" action="close"></slsv-button>
+<slsv-button btnId="sourceSelector_validateButton" value="OK"></slsv-button>
   <button class="btn btn-sm my-1 py-0 btn-outline-primary" onclick="$('#sourceSelector').dialog('close')">Cancel</button>
   <button class="btn btn-sm my-1 py-0 btn-outline-primary" id="sourceSelector_validateButton">OK</button>
 </div>

@@ -4,14 +4,42 @@ import {LitElement, html,css} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/core/
 
 class SlsvButton extends LitElement {
   static properties = {
-    value: { type: String, reflect: true }
+    value: { type: String, reflect: true },
+    action: { type: String, reflect: true },
+    btnId: { type: String, reflect: true },
+    btnClass: { type: String, reflect: true }
   };
   constructor() {
     super();
     this.value = "";
+    this.action = "";
+    this.btnId = "";
+    this.btnClass = "";
     this.attachShadow({ mode: 'open' });
 }
- 
+closeDialog() {
+  const sourceSelector = $("#sourceSelector");
+  if (sourceSelector.dialog) {
+    sourceSelector.dialog("close");
+  }
+}
+
+customAction(){
+  console.log("exec custom action");
+}
+
+handleAction() {
+  switch(this.action) {
+    case "close":
+      this.closeDialog();
+      break;
+    case "custom":
+      // this.closeDialog();
+      break;
+    default:
+      console.warn(`Unknown action: ${this.action}`);
+  }
+}
     render(){
     return html`
     <style>
@@ -22,13 +50,14 @@ class SlsvButton extends LitElement {
       cursor: pointer;
     }
     </style>
-    <link rel="stylesheet" href="../../css/slsv-components.css">
-    <input id="btn" type="button"  .value="${this.value}" class="slsv-skin">
+    <link rel="stylesheet" href="../../vocables/css/slsv-components.css">
+    <button id="${this.btnId}" @click="${this.handleAction}" class="${this.btnClass}">${this.value}</button>
     </input>
     `;
   
 }
 }
+{/* <input id="${this.btnId} type="button"  .value="${this.value}" @click="${this.handleAction}"  class="${this.btnClass}> */}
 customElements.define("slsv-button", SlsvButton);
 
 
@@ -47,7 +76,7 @@ createRenderRoot() {
 } 
     render(){
     return html`
-    <link rel="stylesheet" href="../../css/slsv-components.css">
+    <link rel="stylesheet" href="../../vocables/css/slsv-components.css">
     <input class="slsv-input" .value="${this.value}">
     </input>
     `;
