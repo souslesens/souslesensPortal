@@ -1,6 +1,6 @@
-.slsv-skin{
+.slsv-skin {
     font-size: x-small;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: "Courier New", Courier, monospace;
 }
 input {
     font-weight: bold;
@@ -10,6 +10,6 @@ button {
     background-color: yellowgreen;
 }
 
-#zzzz{
+#zzzz {
     background-color: red;
 }

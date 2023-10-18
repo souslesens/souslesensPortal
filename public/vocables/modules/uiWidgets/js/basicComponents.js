@@ -1,89 +1,142 @@
-import {LitElement, html,css} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js';
-
-
+import { LitElement, html, css } from "https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js";
 
 class SlsvButton extends LitElement {
-  static properties = {
-    value: { type: String, reflect: true },
-    action: { type: String, reflect: true },
-    btnId: { type: String, reflect: true },
-    btnClass: { type: String, reflect: true }
-  };
-  constructor() {
-    super();
-    this.value = "";
-    this.action = "";
-    this.btnId = "";
-    this.btnClass = "";
-    this.attachShadow({ mode: 'open' });
-}
-closeDialog() {
-  const sourceSelector = $("#sourceSelector");
-  if (sourceSelector.dialog) {
-    sourceSelector.dialog("close");
-  }
-}
-
-customAction(){
-  console.log("exec custom action");
-}
-
-handleAction() {
-  switch(this.action) {
-    case "close":
-      this.closeDialog();
-      break;
-    case "custom":
-      // this.closeDialog();
-      break;
-    default:
-      console.warn(`Unknown action: ${this.action}`);
-  }
-}
-    render(){
-    return html`
-    <style>
-    #btn {
-      margin: 20px;
-      padding: 20px;
-      text-align: center;
-      cursor: pointer;
+    static properties = {
+        value: { type: String, reflect: true },
+        action: { type: String, reflect: true },
+        btnId: { type: String, reflect: true },
+        btnClass: { type: String, reflect: true },
+    };
+    constructor() {
+        super();
+        this.value = "";
+        this.action = "";
+        this.btnId = "";
+        this.btnClass = "";
+        this.attachShadow({ mode: "open" });
     }
-    </style>
-    <link rel="stylesheet" href="../../vocables/css/slsv-components.css">
-    <button id="${this.btnId}" @click="${this.handleAction}" class="${this.btnClass}">${this.value}</button>
-    </input>
-    `;
+    /*
+async _loginClickHandler() {
   
+  // Wait for `loggedIn` state to be rendered to the DOM
+  await this.updateComplete;
+  console.log("here")
+  this.dispatchEvent(new Event('login'));
 }
+*/
+    updated() {
+        console.log("here");
+        var host = this.renderRoot.host;
+        var hostId = host.id;
+        var shadowDom = host.renderRoot;
+        //$('#'+hostId).html(shadowDom);
+    }
+    closeDialog() {
+        const sourceSelector = $("#sourceSelector");
+        if (sourceSelector.dialog) {
+            sourceSelector.dialog("close");
+        }
+    }
+
+    customAction() {
+        console.log("exec custom action");
+    }
+
+    handleAction() {
+        switch (this.action) {
+            case "close":
+                this.closeDialog();
+                break;
+            case "custom":
+                // this.closeDialog();
+                break;
+            default:
+                console.warn(`Unknown action: ${this.action}`);
+        }
+    }
+    render() {
+        return html`
+            <style>
+                #btn {
+                    margin: 20px;
+                    padding: 20px;
+                    text-align: center;
+                    cursor: pointer;
+                }
+            </style>
+            <link rel="stylesheet" href="../../vocables/css/slsv-components.css" />
+            <button id="${this.btnId}" @click="${this.handleAction}" class="${this.btnClass}">${this.value}</button>
+        `;
+    }
 }
-{/* <input id="${this.btnId} type="button"  .value="${this.value}" @click="${this.handleAction}"  class="${this.btnClass}> */}
+{
+    /* <input id="${this.btnId} type="button"  .value="${this.value}" @click="${this.handleAction}"  class="${this.btnClass}> */
+}
 customElements.define("slsv-button", SlsvButton);
 
-
 class SlsvInput extends LitElement {
-  static properties = {
-    value: { type: String, reflect: true },
-    inputId: { type: String, reflect: true },
-    inputClass: { type: String, reflect: true },
-    inputAuto: { type: String, reflect: true }
-  };
-  constructor() {
-    super();
-    this.value = "";
-    this.inputId= "";
-    this.inputClass= "";
-    this.inputAuto="off";
-    this.attachShadow({ mode: 'open' });
-}
+    static properties = {
+        value: { type: String, reflect: true },
+        inputId: { type: String, reflect: true },
+        inputClass: { type: String, reflect: true },
+        inputAction: { type: String, reflect: true },
+    };
+    constructor() {
+        super();
+        this.value = "";
+        this.inputId = "";
+        this.inputClass = "";
+        this.inputAction = "";
+        this.attachShadow({ mode: "open" });
+    }
+    /*
+createRenderRoot() {
+  return this;
+}    
+*/
+    customAction() {
+        console.log("exec custom action");
+    }
 
-    render(){
-    return html`
+    handleAction(event) {
+        SourceSelectorWidget.searchBarEvent(event);
+    }
+    updated() {
+        //super.firstUpdated();
+        /*var host=this.renderRoot.host;
+  var hostId=host.id;
+  var shadowDom=host.renderRoot;
+  $('#'+hostId).html(shadowDom);
+  */
+        /*
+  $("#sourceSelector_searchInput").bind("keydown", null, function() {
+    if (event.keyCode != 13 && event.keyCode != 9) {
+      return;
+    }
+    var value = $("#" +this.id).val();
+    $("#" + 'sourceSelector_jstreeDiv')
+      .jstree(true)
+      .search(value);
+  });
+  */
+        //var shadowDom=this.renderRoot.querySelector();
+        /* $("#mainDialogDiv").html(shadowDom);
+
+  SourceSelectorWidget.initJsTree();*/
+    }
+    render() {
+        return html`
     <link rel="stylesheet" href="../../vocables/css/slsv-components.css">
-    <input class="${this.inputClass}" id="${this.inputId}" .value="${this.value}" autocomplete="${this.inputAuto}">
+    <input onkeydown="${this.inputAction}">
     </input>
     `;
-  
-}
+    }
 }
 customElements.define("slsv-input", SlsvInput);
+
+var basicComponents = (function () {
+    var self = {};
+    self.input_callback = null;
+
+    return self;
+})();
