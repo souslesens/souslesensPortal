@@ -118,6 +118,9 @@ var JstreeWidget = (function () {
         if ($("#" + jstreeDiv).jstree) {
             $("#" + jstreeDiv).jstree("destroy");
         }
+
+
+        $
         $("#" + jstreeDiv)
             .jstree({
                 /* "checkbox": {
