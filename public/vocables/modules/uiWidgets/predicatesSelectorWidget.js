@@ -5,7 +5,93 @@ import OntologyModels from "../shared/ontologyModels.js";
 import DateWidget from "./dateWidget.js";
 import Sparql_common from "../sparqlProxies/sparql_common.js";
 import IndividualValueFilterWidget from "./individualValuefilterWidget.js";
+import {LitElement, html,css} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js';
 
+
+
+/**
+ * ***********************************************************************
+ *  Widget >Description
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ * @type {{}}
+ */
+
+
+/**
+ * ***************************************************************************************
+ * WebComponent
+ *
+ *
+ *
+ * @type {{}}
+ */
+
+
+
+class predicateSelector extends LitElement {
+    
+    constructor() {
+        super();
+        this.attachShadow({ mode: 'open' });
+    }
+   
+  render() {
+  return html`
+  <div id="custom1">
+  <div><b>Property</b></div>
+  <div>
+      <select
+          id="editPredicate_vocabularySelect"
+          style="min-width: 100px; background-color: #ddd"
+          onchange="PredicatesSelectorWidget.setCurrentVocabPropertiesSelect($(this).val(),'editPredicate_currentVocabPredicateSelect')"
+      ></select>
+      <select
+          id="editPredicate_currentVocabPredicateSelect"
+          style="min-width: 200px; background-color: #ddd"
+          onchange="PredicatesSelectorWidget.onSelectPredicateProperty($(this).val())"
+      ></select>
+  </div>
+  <input id="editPredicate_propertyValue" style="width: 95%; background-color: beige" /><br />
+  <div id="editPredicate_customPredicateContentDiv"></div><div>`;
+  }
+  
+  
+  firstUpdated() {
+    super.firstUpdated();
+    // var shadowRoot = $("slsv-predicate-selector")[0].shadowRoot;
+    // var shadowDom=null;
+    //   shadowDom = this.renderRoot.querySelector('#editPredicate_vocabularySelect')
+    //   var divClone = $(shadowRoot).find("#custom1").clone();
+    var shadowRootContent = $("slsv-predicate-selector")[0].shadowRoot;
+
+// Clone the entire content of the shadow root
+var clonedContent = $(shadowRootContent).children().clone();
+
+      $("#mainDialogDiv").append(clonedContent);
+
+
+  
+  }
+  }
+    customElements.define("slsv-predicate-selector", predicateSelector);
+
+
+/**
+ * **********************************************************************************************
+ * Business logic
+ *
+ *
+ *
+ * @type {{}}
+ */
 var PredicatesSelectorWidget = (function () {
     var self = {};
 

@@ -45,12 +45,11 @@ render() {
 return html`
 <div id="sourceSelector" style="margin-bottom: 10px; width: auto; min-height: 0px; max-height: none; height: 680px">
 <div class="sourceSelector_buttons">
-<slsv-button btnId="zzzz" value="Cancel" action="close"></slsv-button>
-<slsv-button btnId="sourceSelector_validateButton" value="OK"></slsv-button>
-  <button class="btn btn-sm my-1 py-0 btn-outline-primary" onclick="$('#sourceSelector').dialog('close')">Cancel</button>
-  <button class="btn btn-sm my-1 py-0 btn-outline-primary" id="sourceSelector_validateButton">OK</button>
+<slsv-button id="xxxx" btnId="zzzz" value="Cancel" action="close"></slsv-button>
+<slsv-button id="test1" btnId="sourceSelector_validateButton" value="OK"></slsv-button>
+
 </div>
-<div>Search : <input id="sourceSelector_searchInput" value="" autocomplete="off" style="width: 200px; font-size: 12px; margin: 3px; padding: 3px" /></div>
+
 <div>Search : <slsv-input id="sourceSelector_searchInput" value="" autocomplete="off"></slsv-input></div>
 
 
@@ -61,12 +60,17 @@ return html`
 </div>
 `;
 }
+
+
 firstUpdated() {
   super.firstUpdated();
-  var shadowDom=this.renderRoot.querySelector('#sourceSelector');
+  var shadowDom=null;
+    shadowDom = this.renderRoot.querySelector('#sourceSelector')
+  setTimeout(function(){
   $("#mainDialogDiv").html(shadowDom);
-
   SourceSelectorWidget.initJsTree();
+},2220)
+console.log("GERWGFERG")
 
 }
 }

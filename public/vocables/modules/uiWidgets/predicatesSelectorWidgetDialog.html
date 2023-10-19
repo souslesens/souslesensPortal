@@ -22,9 +22,10 @@
 </style>
 <div id="editPredicate_mainDiv" style="display: flex; flex-direction: row">
     <div class="editPredicatePanel" id="editPredicate_propertyDiv">
-        <div><b>Property</b></div>
-        <div>
-            <select
+        <!-- <div><b>Property</b></div>
+        <div> -->
+            <slsv-predicate-selector></slsv-predicate-selector>
+            <!-- <select
                 id="editPredicate_vocabularySelect"
                 style="min-width: 100px; background-color: #ddd"
                 onchange="PredicatesSelectorWidget.setCurrentVocabPropertiesSelect($(this).val(),'editPredicate_currentVocabPredicateSelect')"
@@ -36,7 +37,7 @@
             ></select>
         </div>
         <input id="editPredicate_propertyValue" style="width: 95%; background-color: beige" /><br />
-        <div id="editPredicate_customPredicateContentDiv"></div>
+        <div id="editPredicate_customPredicateContentDiv"></div> -->
     </div>
 
     <div class="editPredicatePanel" id="editPredicate_objectDiv">
@@ -63,3 +64,4 @@
         <div id="editPredicate_customContentDiv"></div>
     </div>
 </div>
+
