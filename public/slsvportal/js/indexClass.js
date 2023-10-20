@@ -23,7 +23,7 @@ customElements.define("slsv-ss", SourceSelector);
 class SlsvButton extends LitElement {
     constructor() {
         super();
-        this.attachShadow({ mode: 'open' });
+      //  this.attachShadow({ mode: 'open' });
     }
 
     connectedCallback() {

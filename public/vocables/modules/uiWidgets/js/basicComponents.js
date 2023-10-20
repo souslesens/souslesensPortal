@@ -74,7 +74,7 @@ class SlsvInput extends LitElement {
     this.inputId= "";
     this.inputClass= "";
     this.inputAuto="off";
-    this.attachShadow({ mode: 'open' });
+ this.attachShadow({ mode: 'open' });
 }
 
     render(){
@@ -87,3 +87,31 @@ class SlsvInput extends LitElement {
 }
 }
 customElements.define("slsv-input", SlsvInput);
+
+
+
+
+
+/*
+class SlsvInputA extends LitElement {
+  static properties = {
+    value: { type: String, reflect: true },
+    inputId: { type: String, reflect: true },
+    inputClass: { type: String, reflect: true },
+    inputAuto: { type: String, reflect: true }
+  };
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
+  }
+
+  render(){
+    return html`
+    <link rel="stylesheet" href="../../vocables/css/slsv-components.css">
+    <input class="${this.inputClass}" id="${this.inputId}" .value="${this.value}" autocomplete="${this.inputAuto}">
+    </input>
+    `;
+
+  }
+}
+customElements.define("slsv-inputA", SlsvInputA);*/
