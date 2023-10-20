@@ -4,4 +4,4 @@ mainapp/static/mainapp.js
 mainapp/static/mainapp.js.map
 # Vendored libraries
 public/YasGui/
-public/vocables/js/external
+public/external/js

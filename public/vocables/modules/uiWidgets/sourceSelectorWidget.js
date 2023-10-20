@@ -34,44 +34,49 @@ import "./js/basicComponents.js";
 
 
 class sourceSelector extends LitElement {
-    static properties = {
-        article: {attribute: false},
-    };
 
-    constructor() {
-        super();
-        this.article = {
-            title: 'My Nifty Article',
-            text: 'Some witty text.',
-        };
-    }
 
-   render() {
+    render() {
         return html`
             <div id="sourceSelector"
                  style="margin-bottom: 10px; width: auto; min-height: 0px; max-height: none; height: 680px">
-              
+
                 <div className="sourceSelector_buttons">
                     <slsv-button id="zzzz" value="Cancel" action="close"></slsv-button>
-                    <slsv-button id="sourceSelector_validateButton" value="OK"  @click="${this._validateButtonFn}"></slsv-button>
+                    <slsv-button id="sourceSelector_validateButton" value="OK"
+                                 @click="${this._validateButtonFn}"></slsv-button>
 
                 </div>
                 <div>Search :
-                    <slsv-input id="sourceSelector_searchInput" value="xxxxx" onkeydown="SourceSelectorWidget.searchInJstree(event);" autocomplete="off"></slsv-input>
+                    <slsv-input id="sourceSelector_searchInput" value=""
+                                onkeydown="SourceSelectorWidget.searchInJstree(event);" autocomplete="off"></slsv-input>
+
+                    <div className="jstreeContainer" id="sourceSelectorJstreeContainer"
+                         style="width: 360px; height: 600px; overflow: auto; margin-top: 5px">
+                        <div id="sourceSelector_jstreeDiv"></div>
+                    </div>
+
                 </div>
-                </div>
+
             </div>
         `;
     }
 
 
-    _validateButtonFn(e){
+    _validateButtonFn(e) {
         SourceSelectorWidget.okButtonValidateFn()
     }
 
 
     firstUpdated() {
         super.firstUpdated();
+        var shadowDom = null;
+        shadowDom = this.renderRoot.querySelector('#sourceSelector')
+
+        $("#mainDialogDiv").html(shadowDom);
+     //   setTimeout(function () {
+            SourceSelectorWidget.initJsTree(SourceSelectorWidget.jsTreeOptions);
+     //   },1000)
     }
 
 }
@@ -95,10 +100,9 @@ var SourceSelectorWidget = (function () {
             return;
         }
         var value = event.currentTarget.shadowRoot.querySelector("input").value;
-        $("#" + "sourceSelector_jstreeDiv")
+        $("#sourceSelector_jstreeDiv")
             .jstree(true)
             .search(value);
-        return;
     };
 
     self.getComponentSearchedValue = function () {
@@ -107,13 +111,21 @@ var SourceSelectorWidget = (function () {
 
 
     self.currentTreeDiv = null;
-  self.initJsTree = function (selectTreeNodeCallbackFn) {
 
-
+    self.initJsTree = function (options) {
+        SourceSelectorWidget.loadSourcesTreeDiv("sourceSelector_jstreeDiv", options);
+        $("#sourceSelector_searchInput").focus();
+        if (options.withCheckboxes) {
+            $(".sourceSelector_buttons").css("display", "block");
+        } else {
+            $(".sourceSelector_buttons").css("display", "none");
+        }
 
     }
     self.initWidget = function (types, targetDivId, isDialog, selectTreeNodeCallbackFn, okButtonValidateFn, options) {
-        self.okButtonValidateFn=okButtonValidateFn;
+        self.okButtonValidateFn = okButtonValidateFn;
+        options.selectTreeNodeFn = selectTreeNodeCallbackFn;
+        self.jsTreeOptions=options
         if (self.currentTreeDiv != null) {
             if ($("#" + self.currentTreeDiv).jstree() != undefined) {
                 $("#" + self.currentTreeDiv)
@@ -134,22 +146,10 @@ var SourceSelectorWidget = (function () {
         $("#mainDialogDiv").dialog({
             "open": function (event, ui) {
 
-                $("#mainDialogDiv").html(' <slsv-source-selector></slsv-source-selector>' +
-                    '<div className=\"jstreeContainer\" id=\"sourceSelectorJstreeContainer\" style=\"width: 360px; height: 600px; overflow: auto; margin-top: 5px\">' +
-                   ' <div id=\"sourceSelector_jstreeDiv\"></div></div>');
+                $("#mainDialogDiv").html(' <slsv-source-selector></slsv-source-selector>');
 
 
 
-                options.selectTreeNodeFn = selectTreeNodeCallbackFn;
-                SourceSelectorWidget.loadSourcesTreeDiv("sourceSelector_jstreeDiv", options);
-                $("#sourceSelector_searchInput").focus();
-
-
-                if (options.withCheckboxes) {
-                    $(".sourceSelector_buttons").css("display", "block");
-                } else {
-                    $(".sourceSelector_buttons").css("display", "none");
-                }
             }
         })
 
@@ -285,7 +285,7 @@ var SourceSelectorWidget = (function () {
             jstreeOptions.onOpenNodeFn = self.defaultOpenNodeFn;
         }
 
-        $("#sourceSelector_searchInput").bind("keydown", null, function () {
+     /*   $("#sourceSelector_searchInput").bind("keydown", null, function () {
             if (event.keyCode != 13 && event.keyCode != 9) {
                 return;
             }
@@ -293,7 +293,7 @@ var SourceSelectorWidget = (function () {
             $("#" + treeDiv)
                 .jstree(true)
                 .search(value);
-        });
+        });*/
 
         jstreeOptions.searchPlugin = {
             case_insensitive: true,

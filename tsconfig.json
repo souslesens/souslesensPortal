@@ -1,6 +1,6 @@
 {
     "include": ["public/vocables/js/**/*.js", "public/vocables/config/*.js", "public/vocables/customPlugins/**/*.js", "bin/**/*.js", "app.js", "./model", "./tests"],
-    "exclude": ["public/vocables/js/external/**/*.js"],
+    "exclude": ["public/vocables/external/js/**/*.js"],
 
     "compilerOptions": {
         /* Visit https://aka.ms/tsconfig.json to read more about this file */
