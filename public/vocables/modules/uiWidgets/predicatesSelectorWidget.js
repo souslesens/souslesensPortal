@@ -44,39 +44,93 @@ class predicateSelector extends LitElement {
     }
    
   render() {
-  return html`
-  <div id="custom1">
-  <div><b>Property</b></div>
-  <div>
-      <select
-          id="editPredicate_vocabularySelect"
-          style="min-width: 100px; background-color: #ddd"
-          onchange="PredicatesSelectorWidget.setCurrentVocabPropertiesSelect($(this).val(),'editPredicate_currentVocabPredicateSelect')"
-      ></select>
-      <select
-          id="editPredicate_currentVocabPredicateSelect"
-          style="min-width: 200px; background-color: #ddd"
-          onchange="PredicatesSelectorWidget.onSelectPredicateProperty($(this).val())"
-      ></select>
+  return html`<style>
+  .editPredicatePanel {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      margin: 3px;
+      width: 300px;
+  }
+
+  .editPredicatePanel input {
+      width: 240px;
+      margin: 3px;
+      padding: 0px;
+      border: #6e2500 solid 1px;
+      border-radius: 3px;
+      background-color: #ddd;
+  }
+
+  input[type="checkbox"] {
+      width: 30px;
+  }
+</style>
+<div id="editPredicate_mainDiv" style="display: flex; flex-direction: row">
+  <div class="editPredicatePanel" id="editPredicate_propertyDiv">
+      <div><b>Property</b></div>
+      <div>
+          
+          <select
+              id="editPredicate_vocabularySelect"
+              style="min-width: 100px; background-color: #ddd"
+              onchange="PredicatesSelectorWidget.setCurrentVocabPropertiesSelect($(this).val(),'editPredicate_currentVocabPredicateSelect')"
+          ></select>
+          <select
+              id="editPredicate_currentVocabPredicateSelect"
+              style="min-width: 200px; background-color: #ddd"
+              onchange="PredicatesSelectorWidget.onSelectPredicateProperty($(this).val())"
+          ></select>
+      </div>
+      <input id="editPredicate_propertyValue" style="width: 95%; background-color: beige" /><br />
+      <div id="editPredicate_customPredicateContentDiv"></div>
   </div>
-  <input id="editPredicate_propertyValue" style="width: 95%; background-color: beige" /><br />
-  <div id="editPredicate_customPredicateContentDiv"></div><div>`;
+
+  <div class="editPredicatePanel" id="editPredicate_objectDiv">
+      <div><b>Object</b></div>
+      <button class="btn btn-sm my-1 py-0 btn-outline-primary" id="editPredicate_savePredicateButton">
+              <b>Save</b>
+          </button>
+      <div id="editPredicate_controlsDiv" style="display: none">
+          <b>Object</b> &nbsp;
+          <!--   <button class="btn btn-sm my-1 py-0 btn-outline-primary" onclick="PredicatesSelectorWidget.hideAddPredicateDiv()"><b>cancel</b></button>-->
+      </div>
+      <div>
+          <select
+              id="editPredicate_vocabularySelect2"
+              style="min-width: 100px; background-color: #ddd"
+              onchange="PredicatesSelectorWidget.setCurrentVocabClassesSelect($(this).val(),'editPredicate_objectSelect')"
+          ></select
+          >&nbsp;
+
+          <select id="editPredicate_objectSelect" style="min-width: 200px; background-color: #ddd" onchange="PredicatesSelectorWidget.onSelectCurrentVocabObject($(this).val())"></select>
+      </div>
+      <div></div>
+      <textarea id="editPredicate_objectValueTA" style="width: 95%; display: none"></textarea>
+      <input id="editPredicate_objectValue" style="width: 95%; background-color: beige" />
+      <div id="editPredicate_customContentDiv"></div>
+  </div>
+</div>
+`;
   }
   
   
   firstUpdated() {
     super.firstUpdated();
-    // var shadowRoot = $("slsv-predicate-selector")[0].shadowRoot;
-    // var shadowDom=null;
-    //   shadowDom = this.renderRoot.querySelector('#editPredicate_vocabularySelect')
-    //   var divClone = $(shadowRoot).find("#custom1").clone();
-    var shadowRootContent = $("slsv-predicate-selector")[0].shadowRoot;
 
-// Clone the entire content of the shadow root
-var clonedContent = $(shadowRootContent).children().clone();
 
-      $("#mainDialogDiv").append(clonedContent);
+var shadowRootContent = $("slsv-predicate-selector")[0].shadowRoot;
 
+// Créer un fragment de document pour contenir le contenu cloné
+var fragment = document.createDocumentFragment();
+
+// Cloner chaque enfant du shadowRoot et l'ajouter au fragment
+shadowRootContent.childNodes.forEach(function(node) {
+    fragment.appendChild(node.cloneNode(true));
+});
+
+// Utilisez le fragment pour insérer le contenu cloné dans votre élément cible
+$("#sourceBrowser_addPropertyDiv").empty().append(fragment);
 
   
   }
