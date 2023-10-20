@@ -121,15 +121,16 @@ class predicateSelector extends LitElement {
 
 var shadowRootContent = $("slsv-predicate-selector")[0].shadowRoot;
 
-// Créer un fragment de document pour contenir le contenu cloné
 var fragment = document.createDocumentFragment();
+//Create document fragement to contain cloned elements
 
-// Cloner chaque enfant du shadowRoot et l'ajouter au fragment
+
+// clone each children of the shadowRoot and add it to the fragement
 shadowRootContent.childNodes.forEach(function(node) {
     fragment.appendChild(node.cloneNode(true));
 });
 
-// Utilisez le fragment pour insérer le contenu cloné dans votre élément cible
+// Use the fragment to insert the element cloned inside the target element
 $("#sourceBrowser_addPropertyDiv").empty().append(fragment);
 
   
