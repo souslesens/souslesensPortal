@@ -122,6 +122,8 @@ var SourceSelectorWidget = (function () {
     }
 
   }
+
+
   self.initWidget = function (types, targetDivId, isDialog, selectTreeNodeCallbackFn, okButtonValidateFn, options) {
     self.okButtonValidateFn = okButtonValidateFn;
     options.selectTreeNodeFn = selectTreeNodeCallbackFn;
